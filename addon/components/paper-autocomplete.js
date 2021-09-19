@@ -127,7 +127,9 @@ export default PowerSelect.extend(ValidationMixin, ChildMixin, {
     },
 
     onBlur(event) {
-      this.send('deactivate');
+      if (!this.isDestroying) {
+        this.send('deactivate');
+      }
       let action = this.get('onblur');
 
       if (action) {
